@@ -1,12 +1,16 @@
-<h2>List of Books</h2>
+<div id="books-index">
 
-<ul>
-  <% @books.each do |book| %>
-    <li>
+  <h2>List of Books</h2>
+
+  <ul>
+    <% @books.each do |book| %>
+    <li class="book-summary">
       <strong>
         <%= book[:title] %>
       </strong>
       by: <%= book[:author] %>
     </li>
-  <% end %>
-</ul>
+    <% end %>
+  </ul>
+
+</div>
