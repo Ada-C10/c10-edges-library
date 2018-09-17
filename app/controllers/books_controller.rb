@@ -8,4 +8,9 @@ class BooksController < ApplicationController
   def index
     @books = BOOKS
   end
+
+  def show
+    book_id = params[:id].to_i
+    @book = BOOKS[book_id]
+  end
 end

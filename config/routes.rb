@@ -4,4 +4,8 @@ Rails.application.routes.draw do
 
   # verb '/path', to: 'controller#action'
   get '/books', to: 'books#index'
+
+  # This route takes a parameter!
+  # It will accept _anything_ as :id
+  get '/books/:id', to: 'books#show'
 end
