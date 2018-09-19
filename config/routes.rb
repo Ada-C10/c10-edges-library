@@ -14,9 +14,9 @@ Rails.application.routes.draw do
 
   # edit_book_path
   get '/books/:id/edit', to: 'books#edit', as: 'edit_book'
-
   patch '/books/:id', to: 'books#update'
-  delete '/books/:id', to: 'books#destroy'
+
+  delete '/books/:id', to: 'books#destroy', as: 'delete_book'
 
 
   # Very possible:
