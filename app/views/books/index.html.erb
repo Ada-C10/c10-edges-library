@@ -9,8 +9,10 @@
         <%= book[:title] %>
       </strong>
       by: <%= book[:author] %>
+      <%= link_to "(View Details)", book_path(book.id) %>
     </li>
     <% end %>
+
   </ul>
 
 </div>

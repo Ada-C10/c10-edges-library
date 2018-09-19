@@ -1,5 +1,7 @@
 <h2>Book Details</h2>
 
+<%= image_tag "http://placekitten.com/g/200/200", alt: "placeholder image that happens to be a cat", class: "book-cover-image" %>
+
 <p>
   <strong>Title:</strong>
   <%= @book[:title] %>
@@ -9,3 +11,5 @@
   <strong>Author</strong>
   <%= @book[:author] %>
 </p>
+
+<%= link_to "Go Back to All Books", books_path, class: "all-books-link" %>
