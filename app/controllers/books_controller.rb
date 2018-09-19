@@ -10,4 +10,23 @@ class BooksController < ApplicationController
       head :not_found
     end
   end
+
+  def new
+    @book = Book.new
+  end
+
+  def create
+    book = Book.new(
+      author: params[:book][:author],
+      title: params[:book][:title]
+    )
+
+    is_successful_save = book.save
+
+    if is_successful_save
+      redirect_to books_path
+    else
+      render :new
+    end
+  end
 end
