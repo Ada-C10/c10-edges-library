@@ -6,9 +6,9 @@
     <% @books.each do |book| %>
     <li class="book-summary">
       <strong>
-        <%= book[:title] %>
+        <%= book.title %>
       </strong>
-      by: <%= book[:author] %>
+      by: <%= book.author %>
       <%= link_to "(View Details)", book_path(book.id) %>
     </li>
     <% end %>
