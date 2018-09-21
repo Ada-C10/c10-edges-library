@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'books#index'
 
   # Auto-generate all the RESTful routes
-  resources :books, except: [:edit, :update]
+  resources :books
 
   # Non-RESTful routes are OK, so long as you have
   # non-RESTful work to do

@@ -1,0 +1,13 @@
+<%= form_with model: @book, class: 'book-form' do |f| %>
+
+  <h3><%= form_title %></h3>
+
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <%= f.label :author %>
+  <%= f.text_field :author %>
+
+  <%= f.submit action_type, class: "book-form-submit-button" %>
+
+<% end %>
