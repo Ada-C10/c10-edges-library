@@ -4,8 +4,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    book_id = params[:id].to_i
-    @book = Book.find_by(id: book_id)
+    @book = Book.find_by(id: params[:id])
     if @book.nil?
       head :not_found
     end
@@ -28,5 +27,12 @@ class BooksController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy
+    book = Book.find_by(id: params[:id])
+
+    book.destroy
+    redirect_to books_path
   end
 end

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # Root route says what do I get for '/'
+  root 'books#index'
 
   # the "as: 'books'" part is defining a NICKNAME for a path (in this case: '/books')
 
@@ -16,7 +18,7 @@ Rails.application.routes.draw do
   get '/books/:id/edit', to: 'books#edit', as: 'edit_book'
   patch '/books/:id', to: 'books#update'
 
-  delete '/books/:id', to: 'books#destroy', as: 'delete_book'
+  delete '/books/:id', to: 'books#destroy'
 
 
   # Very possible:
