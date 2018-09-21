@@ -16,12 +16,12 @@ class BooksController < ApplicationController
   end
 
   def create
-    book = Book.new(
+    @book = Book.new(
       author: params[:book][:author],
       title: params[:book][:title]
     )
 
-    is_successful_save = book.save
+    is_successful_save = @book.save
 
     if is_successful_save
       redirect_to books_path
