@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # non-RESTful work to do
   post '/books/:id/check_out', to: 'books#check_out', as: 'check_out_book'
 
-  resources :authors
+  resources :authors, except: [:destroy]
 
   # the "as: 'books'" part is defining a NICKNAME for a path (in this case: '/books')
 

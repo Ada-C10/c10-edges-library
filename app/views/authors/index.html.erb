@@ -1,0 +1,12 @@
+<h2>Authors!</h2>
+
+<ul>
+  <% @authors.each do |author| %>
+  <li>
+    <strong>
+      <%= author.name %>
+    </strong>
+    first published: <%= author.first_published %>
+  </li>
+  <% end %>
+</ul>
