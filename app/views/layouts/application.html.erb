@@ -12,10 +12,20 @@
   <body>
     <header>
       <h1>Edges Book Club</h1>
-      <nav>
+      <nav class="top-navbar">
         <ul>
-          <li><%= link_to "All Books", books_path %></li>
-          <li><%= link_to "New Book", new_book_path %></li>
+          <li>
+            <%= link_to "All Books", books_path %>
+          </li>
+          <li>
+            <%= link_to "New Book", new_book_path %>
+          </li>
+          <li>
+            <%= link_to "All Authors", authors_path %>
+          </li>
+          <li>
+            <%= link_to "New Author", new_author_path %>
+          </li>
         </ul>
       </nav>
     </header>
