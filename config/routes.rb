@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   # non-RESTful work to do
   post '/books/:id/check_out', to: 'books#check_out', as: 'check_out_book'
 
+  resources :authors
+
   # the "as: 'books'" part is defining a NICKNAME for a path (in this case: '/books')
 
   # Therefore, I can refer to this path '/books' with the NICKNAME formed by the pattern: books_path (which is the nickname + _path)
