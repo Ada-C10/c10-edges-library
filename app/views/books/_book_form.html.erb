@@ -1,3 +1,9 @@
+<%= render partial: 'layouts/form_errors',
+locals: {
+  model: @book
+}
+%>
+
 <%= form_with model: @book, class: 'book-form' do |f| %>
 
   <h3><%= form_title %></h3>

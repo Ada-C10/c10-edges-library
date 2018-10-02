@@ -23,7 +23,7 @@ class BooksController < ApplicationController
     if is_successful_save
       redirect_to books_path
     else
-      render :new
+      render :new, status: :bad_request
     end
   end
 
@@ -33,9 +33,11 @@ class BooksController < ApplicationController
 
   def update
     book = Book.find(params[:id])
-    book.update(book_params)
-
-    redirect_to book_path(book.id)
+    if book.update(book_params)
+      redirect_to book_path(book.id)
+    else
+      render :edit, status: :bad_request
+    end
   end
 
   def destroy
