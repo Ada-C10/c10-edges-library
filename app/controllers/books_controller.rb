@@ -1,6 +1,17 @@
 class BooksController < ApplicationController
   def index
-    @books = Book.all
+    if params[:author_id]
+      author = Author.find_by(id: params[:author_id])
+      # How do we handle if the author is not found?
+      #  If the author is not found, we would have a conditional to check
+      # that the author was found.
+      # Redirect to a 404 page
+      # Redirect to another existing page (the home page?) (new author form?)
+      # Show an error message saying that the author was not found
+      @books = author.books
+    else
+      @books = Book.all
+    end
   end
 
   def show

@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   # non-RESTful work to do
   post '/books/:id/check_out', to: 'books#check_out', as: 'check_out_book'
 
-  resources :authors, except: [:destroy]
+  resources :authors, except: [:destroy] do
+    resources :books, only: [:index, :new]
+  end
 
 end
