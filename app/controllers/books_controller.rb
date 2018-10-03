@@ -22,7 +22,14 @@ class BooksController < ApplicationController
   end
 
   def new
-    @book = Book.new
+    if params[:author_id]
+      author = Author.find_by(id: params[:author_id])
+      @book = author.books.new
+      # Same thing as above:
+      # @book = Book.new(author: author)
+    else
+      @book = Book.new
+    end
   end
 
   def create
