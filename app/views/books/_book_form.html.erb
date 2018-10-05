@@ -11,7 +11,16 @@ locals: {
   <%= f.label :title %>
   <%= f.text_field :title %>
 
+  <hr />
+
   <%= f.select :author_id, Author.all.map{ |auth| [auth.name, auth.id] } %>
+
+  <hr />
+
+  <%= f.label :genres %>
+  <%= collection_check_boxes(:book, :genre_ids, Genre.all, :id, :name) %>
+
+  <hr />
 
   <%= f.submit action_type, class: "book-form-submit-button" %>
 

@@ -12,4 +12,18 @@
   <%= @book.author.name %>
 </p>
 
+<section>
+  <h3>Genres:</h3>
+  <ul>
+    <% @book.genres.each do |genre| %>
+      <li>
+        <%= genre.name %>
+      </li>
+    <% end %>
+  </ul>
+</section>
+
+
+
+
 <%= link_to "Go Back to All Books", books_path, class: "all-books-link" %>

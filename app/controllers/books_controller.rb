@@ -74,7 +74,8 @@ class BooksController < ApplicationController
       :title,
       :author_id,
       :description,
-      :isbn
+      :isbn,
+      genre_ids: []
     )
   end
 end
