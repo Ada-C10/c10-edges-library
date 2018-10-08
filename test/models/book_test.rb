@@ -57,11 +57,15 @@ describe Book do
     # There is an instance of Book (second book), both have same titles
     # Calling .valid? on second book will return false
     it 'is invalid with a non-unique title' do
-      second_book = Book.new(title: @book.title, author: Author.new(name: 'foo'))
+      second_book = Book.new(
+        title: Book.first.title,
+        author: Author.first
+      )
 
       is_valid = second_book.valid?
 
-      # expect( is_valid ).must_equal false
+      expect( is_valid ).must_equal false
+      expect( second_book.errors.messages ).must_include :title
     end
 
   end
