@@ -4,6 +4,30 @@ describe Book do
   # Books must have a method that is part of the relationship to author and returns the expected thing from that method
   # it has a .author method, it returns a specific Author
 
+  describe 'relations' do
+
+    it 'can set an author through the method "author"' do
+      author = Author.create!(name: 'test author')
+      book = Book.new()
+
+      book.author = author
+
+      expect( book.author ).must_equal author
+      expect( book.author_id ).must_equal author.id
+    end
+
+    it 'can set the author through the attribute "author_id"' do
+      author = Author.create!(name: 'test author')
+      book = Book.new()
+
+      book.author_id = author.id
+
+      expect( book.author ).must_equal author
+      expect( book.author_id ).must_equal author.id
+    end
+
+  end
+
 
   describe 'validations' do
 
