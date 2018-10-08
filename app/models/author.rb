@@ -1,6 +1,7 @@
 class Author < ApplicationRecord
   has_many :books
-
+  has_many :genres, through: :books
+  
   # validates :attribute, rule: setting
   validates :name, presence: true, uniqueness: true
 

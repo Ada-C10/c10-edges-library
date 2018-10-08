@@ -1,3 +1,11 @@
 <h2>Author details</h2>
 
 <%= @author.name %>
+
+<section>
+  <h3>Genres</h3>
+  <p>
+    <strong>Genres:</strong>
+    <%= @author.genres.uniq.map { |g| g.name.capitalize }.join(', ') %>
+  </p>  
+</section>
