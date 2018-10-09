@@ -58,17 +58,24 @@ class BooksController < ApplicationController
       redirect_to book_path(book.id)
     else
       flash.now[:error] = "Invalid book data"
-      render :edit, status: :bad_request
+      render(:edit, status: :bad_request)
     end
   end
 
   def destroy
     book = Book.find_by(id: params[:id])
 
-    book.destroy
+    if book.author_id == session[:user_id]
+      book.destroy
 
-    flash[:success] = "Successfully destroyed book \"#{book.title}\""
-    redirect_to books_path
+      flash[:success] = "Successfully destroyed book \"#{book.title}\""
+      redirect_to books_path
+
+    else
+      flash[:error] = "You must be logged in as a book's author in order to delete it!"
+
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   private
