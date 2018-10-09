@@ -13,4 +13,6 @@ Rails.application.routes.draw do
     resources :books, only: [:index, :new]
   end
 
+  resources :sessions, only: [:new, :create]
+
 end

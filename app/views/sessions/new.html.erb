@@ -1,0 +1,6 @@
+<%= form_with method: :post, url: sessions_path do |f| %>
+  <%= f.label :author_name %>
+  <%= f.text_field :author_name %>
+
+  <%= f.submit %>
+<% end %>
