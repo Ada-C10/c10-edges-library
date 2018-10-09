@@ -39,8 +39,10 @@ class BooksController < ApplicationController
     is_successful_save = @book.save
 
     if is_successful_save
+      flash[:success] = "Successfully created new book with title \"#{@book.title}\""
       redirect_to books_path
     else
+      flash.now[:error] = "Invalid book data"
       render :new, status: :bad_request
     end
   end
@@ -52,8 +54,10 @@ class BooksController < ApplicationController
   def update
     book = Book.find(params[:id])
     if book.update(book_params)
+      flash[:success] = "Successfully updated book \"#{book.title}\""
       redirect_to book_path(book.id)
     else
+      flash.now[:error] = "Invalid book data"
       render :edit, status: :bad_request
     end
   end
@@ -62,6 +66,8 @@ class BooksController < ApplicationController
     book = Book.find_by(id: params[:id])
 
     book.destroy
+
+    flash[:success] = "Successfully destroyed book \"#{book.title}\""
     redirect_to books_path
   end
 

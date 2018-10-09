@@ -30,6 +30,14 @@
       </nav>
     </header>
 
+    <section class="flash-messages">
+      <% flash.each do |key, message| %>
+        <p class="<%= key %>">
+          <%= message %>
+        </p>
+      <% end %>
+    </section>
+
     <main>
       <%= yield %>
     </main>
