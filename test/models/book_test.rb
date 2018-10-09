@@ -6,24 +6,43 @@ describe Book do
 
   describe 'relations' do
 
-    it 'can set an author through the method "author"' do
-      author = Author.first
-      book = Book.new()
+    # it 'can set an author through the method "author"' do
+    #   author = Author.first
+    #   book = Book.new()
+    #
+    #   book.author = author
+    #
+    #   expect( book.author ).must_equal author
+    #   expect( book.author_id ).must_equal author.id
+    # end
+    #
+    # it 'can set the author through the attribute "author_id"' do
+    #   author = Author.first
+    #   book = Book.new()
+    #
+    #   book.author_id = author.id
+    #
+    #   expect( book.author ).must_equal author
+    #   expect( book.author_id ).must_equal author.id
+    # end
 
-      book.author = author
+    it "has an author" do
+      # Arrange
+      b = Book.first
 
-      expect( book.author ).must_equal author
-      expect( book.author_id ).must_equal author.id
+      # Act
+      author = b.author
+
+      # Assert
+      expect(author).must_be_instance_of Author
     end
 
-    it 'can set the author through the attribute "author_id"' do
-      author = Author.first
-      book = Book.new()
+    it "Has some genres" do
+      b = Book.first
 
-      book.author_id = author.id
+      genres = b.genres
 
-      expect( book.author ).must_equal author
-      expect( book.author_id ).must_equal author.id
+      expect(genres).must_respond_to :each
     end
 
   end
