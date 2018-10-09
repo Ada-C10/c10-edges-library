@@ -9,3 +9,5 @@ kindred:
   description: Solid science fiction
   author: butler
   isbn: 123456
+third_book:
+  pub_date: 1999-01-01

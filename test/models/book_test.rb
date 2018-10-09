@@ -7,7 +7,7 @@ describe Book do
   describe 'relations' do
 
     it 'can set an author through the method "author"' do
-      author = Author.create!(name: 'test author')
+      author = Author.first
       book = Book.new()
 
       book.author = author
@@ -17,7 +17,7 @@ describe Book do
     end
 
     it 'can set the author through the attribute "author_id"' do
-      author = Author.create!(name: 'test author')
+      author = Author.first
       book = Book.new()
 
       book.author_id = author.id
@@ -32,8 +32,10 @@ describe Book do
   describe 'validations' do
 
     before do
-      author = Author.new(name: 'test author')
-      @book = Book.new(title: 'test book', author: author)
+      @book = Book.new(
+        title: 'test book',
+        author: Author.first
+      )
     end
 
     it 'is valid when title is present and unique and author is present' do
@@ -57,15 +59,12 @@ describe Book do
     # There is an instance of Book (second book), both have same titles
     # Calling .valid? on second book will return false
     it 'is invalid with a non-unique title' do
-      second_book = Book.new(
-        title: Book.first.title,
-        author: Author.first
-      )
+      @book.title = Book.first.title
 
-      is_valid = second_book.valid?
+      is_valid = @book.valid?
 
       expect( is_valid ).must_equal false
-      expect( second_book.errors.messages ).must_include :title
+      expect( @book.errors.messages ).must_include :title
     end
 
   end
