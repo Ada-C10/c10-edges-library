@@ -36,10 +36,10 @@
           <p>
             Currently logged in as author
             <%= logged_in_author.name %>
-            <%= link_to "Log out", logout_path, method: :post %>
+            <%= link_to "Log out", logout_path, method: :post, class: "btn btn-outline-info" %>
           </p>
         <% else %>
-          <%= link_to "Log in", new_session_path %>
+          <%= link_to "Log in", new_session_path, class: "btn btn-outline-info" %>
         <% end %>
       </section>
     </header>
