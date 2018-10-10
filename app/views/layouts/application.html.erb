@@ -31,11 +31,10 @@
 
       <section class="login-info">
         <!-- Oh gosh this logic should probably be in a controller filter -->
-        <% logged_in_author = Author.find_by(id: session[:user_id]) %>
-        <% if logged_in_author %>
+        <% if @logged_in_author %>
           <p>
             Currently logged in as author
-            <%= logged_in_author.name %>
+            <%= @logged_in_author.name %>
             <%= link_to "Log out", logout_path, method: :post, class: "btn btn-outline-info" %>
           </p>
         <% else %>
