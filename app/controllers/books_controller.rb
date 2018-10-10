@@ -1,4 +1,7 @@
 class BooksController < ApplicationController
+
+  before_action :find_book, only: [:show, :edit, :update, :destroy]
+
   def index
     if params[:author_id]
       author = Author.find_by(id: params[:author_id])
@@ -15,7 +18,6 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = Book.find_by(id: params[:id])
     if @book.nil?
       head :not_found
     end
@@ -48,14 +50,12 @@ class BooksController < ApplicationController
   end
 
   def edit
-    @book = Book.find_by(id: params[:id])
   end
 
   def update
-    book = Book.find(params[:id])
-    if book.update(book_params)
-      flash[:success] = "Successfully updated book \"#{book.title}\""
-      redirect_to book_path(book.id)
+    if @book.update(book_params)
+      flash[:success] = "Successfully updated book \"#{@book.title}\""
+      redirect_to book_path(@book.id)
     else
       flash.now[:error] = "Invalid book data"
       render(:edit, status: :bad_request)
@@ -63,12 +63,10 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    book = Book.find_by(id: params[:id])
+    if @book.author_id == session[:user_id]
+      @book.destroy
 
-    if book.author_id == session[:user_id]
-      book.destroy
-
-      flash[:success] = "Successfully destroyed book \"#{book.title}\""
+      flash[:success] = "Successfully destroyed book \"#{@book.title}\""
       redirect_to books_path
 
     else
@@ -90,5 +88,9 @@ class BooksController < ApplicationController
       :isbn,
       genre_ids: []
     )
+  end
+
+  def find_book
+    @book = Book.find_by(id: params[:id])
   end
 end
