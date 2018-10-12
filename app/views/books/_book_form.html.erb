@@ -13,6 +13,7 @@ locals: {
 
   <hr />
 
+  <%= f.label :author %>
   <%= f.select :author_id, Author.all.map{ |auth| [auth.name, auth.id] } %>
 
   <hr />

@@ -6,7 +6,10 @@
     <strong>
       <%= author.name %>
     </strong>
-    first published: <%= author.first_published %>, <%= link_to "(View Details)", author_path(author.id) %>
+    first published: <%= author.first_published %>
+    <div>
+      <%= link_to "View Details", author_path(author.id), class: "btn btn-outline-secondary" %>
+    </div>
   </li>
   <% end %>
 </ul>

@@ -6,12 +6,13 @@
     <% @books.each do |book| %>
     <li class="book-summary">
       <strong>
-        <%= book.title %>
+        <%= link_to book.title, book_path(book.id) %>
       </strong>
       by: <%= link_to book.author.name, author_path(book.author) %>
-      <%= link_to "(View Details)", book_path(book.id) %>
-      <%= link_to "Edit", edit_book_path(book.id) %>
-      <%= link_to "Delete", book_path(book), method: :delete, data: { confirm: "Are you 1000% sure you want to delete the book #{book.title}?" } %>
+      <div class="book-actions">
+        <%= link_to "Edit", edit_book_path(book.id), class: "btn btn-outline-secondary" %>
+        <%= link_to "Delete", book_path(book), method: :delete, data: { confirm: "Are you 1000% sure you want to delete the book #{book.title}?" }, class: "btn btn-outline-danger" %>
+      </div>
     </li>
     <% end %>
 
