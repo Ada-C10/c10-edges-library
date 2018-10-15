@@ -1,13 +1,46 @@
 require "test_helper"
 
 describe BooksController do
+  describe "index" do
+    it "should get index" do
+      # Act
+      get books_path
 
-  it "should get index" do
-    # Act
-    get books_path
+      # Assert
+      must_respond_with :success
+    end
+  end
 
-    # Assert
-    must_respond_with :success
+  describe "new" do
+    it "can get the new page" do
+      get new_book_path
+
+      must_respond_with :success
+    end
+  end
+
+  describe "create" do
+    it "can create a book with valid data" do
+      # Arrange
+      book_data = {
+        book: {
+          title: "new test book",
+          author_id: Author.first.id
+        }
+      }
+
+      # Assumptions
+      test_book = Book.new(book_data[:book])
+      test_book.must_be :valid?, "Book data was invalid. Please come fix this test"
+
+      # Act
+      expect {
+        post books_path, params: book_data
+      }.must_change('Book.count', +1)
+
+      # Assert
+      must_redirect_to book_path(Book.last)
+    end
   end
 
   describe "show" do
@@ -43,29 +76,22 @@ describe BooksController do
 
   end
 
-  describe "create" do
-    it "can create a book with valid data" do
-      # Arrange
-      book_data = {
-        book: {
-          title: "new test book",
-          author_id: Author.first.id
-        }
-      }
+  describe "edit" do
+    it "responds with success for an existing book" do
+      get edit_book_path(Book.first)
+      must_respond_with :success
+    end
 
-      # Assumptions
-      test_book = Book.new(book_data[:book])
-      test_book.must_be :valid?, "Book data was invalid. Please come fix this test"
-
-      # Act
-      expect {
-        post books_path, params: book_data
-      }.must_change('Book.count', +1)
-
-      # Assert
-      must_redirect_to book_path(Book.last)
+    it "responds with not_found for a book that D.N.E." do
+      b = Book.first.destroy
+      get edit_book_path(b)
+      must_respond_with :not_found
     end
   end
+
+  describe "update" do
+  end
+
 
   describe "destroy" do
     it "can destroy an existing book" do
