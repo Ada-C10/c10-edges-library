@@ -42,7 +42,7 @@ class BooksController < ApplicationController
 
     if is_successful_save
       flash[:success] = "Successfully created new book with title \"#{@book.title}\""
-      redirect_to books_path
+      redirect_to book_path(@book)
     else
       flash.now[:error] = "Invalid book data"
       render :new, status: :bad_request
@@ -63,17 +63,19 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    if @book.author_id == session[:user_id]
+    # if @book.author_id == session[:user_id]
       @book.destroy
 
       flash[:success] = "Successfully destroyed book \"#{@book.title}\""
       redirect_to books_path
+      # head :no_content
 
-    else
-      flash[:error] = "You must be logged in as a book's author in order to delete it!"
 
-      redirect_back(fallback_location: root_path)
-    end
+    # else
+    #   flash[:error] = "You must be logged in as a book's author in order to delete it!"
+    #
+    #   redirect_back(fallback_location: root_path)
+    # end
   end
 
   private
