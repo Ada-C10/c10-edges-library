@@ -41,6 +41,27 @@ describe BooksController do
       # Assert
       must_redirect_to book_path(Book.last)
     end
+
+    it "does not creat a new book w/ invalid data" do
+      # Arrange
+      book_data = {
+        book: {
+          title: Book.first.title,
+          author_id: Author.first.id
+        }
+      }
+
+      # Assumptions
+      Book.new(book_data[:book]).wont_be :valid?, "Book data wasn't invalid. Please come fix this test"
+
+      # Act
+      expect {
+        post books_path, params: book_data
+      }.wont_change('Book.count')
+
+      # Assert
+      must_respond_with :bad_request
+    end
   end
 
   describe "show" do
