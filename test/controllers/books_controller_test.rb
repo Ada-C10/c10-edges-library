@@ -1,7 +1,13 @@
 require "test_helper"
 
 describe BooksController do
-  # it "must be a real test" do
-  #   flunk "Need real tests"
-  # end
+
+  it "should get index" do
+    # Act
+    get books_path
+
+    # Assert
+    must_respond_with :success
+  end
+
 end
