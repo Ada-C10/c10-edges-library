@@ -17,11 +17,6 @@ class BooksController < ApplicationController
     end
   end
 
-  def show
-    if @book.nil?
-      head :not_found
-    end
-  end
 
   def new
     if params[:author_id]
@@ -49,8 +44,9 @@ class BooksController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def show; end
+
+  def edit; end
 
   def update
     if @book.update(book_params)
@@ -94,5 +90,6 @@ class BooksController < ApplicationController
 
   def find_book
     @book = Book.find_by(id: params[:id])
+    head :not_found unless @book
   end
 end
