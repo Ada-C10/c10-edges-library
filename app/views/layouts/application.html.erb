@@ -31,14 +31,15 @@
 
       <section class="login-info">
         <!-- Oh gosh this logic should probably be in a controller filter -->
-        <% if @logged_in_author %>
+        <% if @logged_in_user %>
           <p>
             Currently logged in as author
-            <%= @logged_in_author.name %>
+            <%= @logged_in_user.username %>
+            <%= image_tag @logged_in_user.image_url, class: "profile-image" %>
             <%= link_to "Log out", logout_path, method: :post, class: "btn btn-outline-info" %>
           </p>
         <% else %>
-          <%= link_to "Log in", new_session_path, class: "btn btn-outline-info" %>
+          <%= link_to "Log in", '/auth/github', class: "btn btn-outline-info" %>
         <% end %>
       </section>
     </header>
