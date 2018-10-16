@@ -1,6 +1,9 @@
 require "test_helper"
 
 describe BooksController do
+
+  let(:bad_book_id) { Book.first.destroy.id }
+
   describe "index" do
     it "should get index" do
       # Act
@@ -46,7 +49,6 @@ describe BooksController do
       # Arrange
       book_data = {
         book: {
-          title: Book.first.title,
           author_id: Author.first.id
         }
       }
@@ -56,7 +58,7 @@ describe BooksController do
 
       # Act
       expect {
-        post books_path, params: book_data
+        post(books_path, params: book_data)
       }.wont_change('Book.count')
 
       # Assert
@@ -79,17 +81,17 @@ describe BooksController do
 
     it "should respond with not found for showing a non-existing book" do
       # Arrange
-      book = books(:poodr)
-      id = book.id
+      # book = books(:poodr)
+      # id = book.id
 
-      get book_path(id)
-      must_respond_with :success
-
-
-      book.destroy
+      # get book_path(id)
+      # must_respond_with :success
+      #
+      #
+      # book.destroy
 
       # Act
-      get book_path(id)
+      get book_path(bad_book_id)
 
       # Assert
       must_respond_with :missing
@@ -104,8 +106,7 @@ describe BooksController do
     end
 
     it "responds with not_found for a book that D.N.E." do
-      b = Book.first.destroy
-      get edit_book_path(b)
+      get edit_book_path(bad_book_id)
       must_respond_with :not_found
     end
   end
@@ -123,7 +124,7 @@ describe BooksController do
       # Act
       expect {
         delete book_path(book)
-      }.must_change('Book.count', -1)
+      }.must_change('puts "inside the must_change argument"; Book.count', -1)
 
       # Assert
       must_respond_with :redirect
@@ -133,6 +134,15 @@ describe BooksController do
       #   before_book_count - 1,
       #   "book count did not decrease"
       # )
+    end
+
+    it "responds with not_found if the book doesn't exist" do
+      id = bad_book_id
+      expect {
+        delete book_path(id)
+      }.wont_change('Book.count')
+
+      must_respond_with :not_found
     end
   end
 
