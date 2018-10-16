@@ -1,8 +1,10 @@
 class SessionsController < ApplicationController
-  def new
+  def create
+    auth_hash = request.env['omniauth.auth']
+    binding.pry
   end
 
-  def create
+  def create_old
     name = params[:author_name]
     author = Author.find_by(name: name)
 

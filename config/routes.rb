@@ -13,7 +13,8 @@ Rails.application.routes.draw do
     resources :books, only: [:index, :new]
   end
 
-  resources :sessions, only: [:new, :create]
+  # resources :sessions, only: [:new, :create]
+  get "/auth/:provider/callback", to: "sessions#create"
   post '/sessions/logout', to: 'sessions#logout', as: 'logout'
 
 end
