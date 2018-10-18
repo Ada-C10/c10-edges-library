@@ -9,6 +9,9 @@
     first published: <%= author.first_published %>
     <div>
       <%= link_to "View Details", author_path(author.id), class: "btn btn-outline-secondary" %>
+      <%= link_to edit_author_path(author) do %>
+        Edit this author
+      <% end %>
     </div>
   </li>
   <% end %>
