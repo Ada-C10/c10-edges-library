@@ -1,6 +1,6 @@
 <h2>Book Details</h2>
 
-<%= image_tag "cat_fluff.jpg", alt: "it's samson!", class: "book-cover-image" %>
+<!-- <%= image_tag "cat_fluff.jpg", alt: "it's samson!", class: "book-cover-image" %> -->
 
 <p>
   <strong>Title:</strong>
@@ -10,6 +10,15 @@
 <p>
   <strong>Author</strong>
   <%= @book.author.name %>
+</p>
+
+<p>
+  Added to database
+  <%= readable_date(@book.created_at) %>
+</p>
+
+<p>
+  <%= readable_date(nil) %>
 </p>
 
 <section>
