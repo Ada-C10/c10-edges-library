@@ -1,13 +1,11 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  username: MyString
+ada:
+  username: adas_github_username
   uid: 1
-  provider: MyString
-  image_url: MyString
+  provider: github
+  image_url: test-image.com/image-ada
 
-two:
-  username: MyString
-  uid: 1
-  provider: MyString
-  image_url: MyString
+grace:
+  username: graces_github_username
+  uid: 2
+  provider: github
+  image_url: test-image.com/image-grace

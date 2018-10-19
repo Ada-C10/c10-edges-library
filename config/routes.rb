@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   end
 
   # resources :sessions, only: [:new, :create]
-  get "/auth/:provider/callback", to: "sessions#create"
+  get "/auth/:provider/callback", to: "sessions#create", as: 'auth_callback'
   post '/sessions/logout', to: 'sessions#logout', as: 'logout'
 
 end
