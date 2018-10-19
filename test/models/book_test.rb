@@ -51,12 +51,8 @@ describe Book do
       expect( @book.errors.messages ).must_include :title
     end
 
-    # A book that has a not-unique title is not valid
-    # There is an instance of Book (first book)
-    # There is an instance of Book (second book), both have same titles
-    # Calling .valid? on second book will return false
-    it 'is invalid with a non-unique title' do
-      @book.title = Book.first.title
+    it 'is invalid if its title is non-unique within its author\'s books' do
+      @book.title = @book.author.books.first.title
 
       is_valid = @book.valid?
 

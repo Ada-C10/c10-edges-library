@@ -1,7 +1,7 @@
 require "test_helper"
 
 describe Author do
-  let(:author) { Author.new }
+  let(:author) { authors(:metz) }
 
   it "must be valid" do
     value(author).must_be :valid?
